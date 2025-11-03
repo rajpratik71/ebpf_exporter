@@ -1,0 +1,10 @@
+PID   COMM       LADDR           LPORT RADDR           RPORT TX_KB RX_KB MS
+22597 recordProg 127.0.0.1       46644 127.0.0.1       28527     0     0 0.23
+3277  redis-serv 127.0.0.1       28527 127.0.0.1       46644     0     0 0.28
+
+# Notes:
+# - This example is IPv4-only and uses fentry hooks on `tcp_sendmsg` and
+#   `tcp_recvmsg` to approximate bytes transmitted/received by the TCP path.
+# - Some kernels may require kprobe attachments instead of fentry; if the
+#   BPF verifier rejects the fentry programs on your kernel, switch to kprobes
+#   or adjust the prototyped arguments.

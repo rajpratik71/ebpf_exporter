@@ -1,0 +1,57 @@
+metrics:
+  counters:
+    - name: tcptop_tx_bytes_total
+      help: Total TCP transmitted bytes per connection (approx.)
+      labels:
+        - name: laddr
+          size: 4
+          decoders:
+            - name: inet_ip
+        - name: lport
+          size: 2
+          decoders:
+            - name: uint
+        - name: raddr
+          size: 4
+          decoders:
+            - name: inet_ip
+        - name: rport
+          size: 2
+          decoders:
+            - name: uint
+        - name: pid
+          size: 4
+          decoders:
+            - name: uint
+        - name: comm
+          size: 16
+          decoders:
+            - name: string
+
+    - name: tcptop_rx_bytes_total
+      help: Total TCP received bytes per connection (approx.)
+      labels:
+        - name: laddr
+          size: 4
+          decoders:
+            - name: inet_ip
+        - name: lport
+          size: 2
+          decoders:
+            - name: uint
+        - name: raddr
+          size: 4
+          decoders:
+            - name: inet_ip
+        - name: rport
+          size: 2
+          decoders:
+            - name: uint
+        - name: pid
+          size: 4
+          decoders:
+            - name: uint
+        - name: comm
+          size: 16
+          decoders:
+            - name: string
