@@ -37,7 +37,9 @@ RUN make -j $(nproc) -C /build/ebpf_exporter/examples CC=clang-16
 
 
 # ebpf_exporter release image
-FROM gcr.io/distroless/static-debian11 AS ebpf_exporter
+FROM debian:bookworm AS ebpf_exporter
+
+RUN apt-get -y update && apt-get -y install python3 bpftool bpfmon bpftrace bpfcc-tools libbpf-tools binutils-bpf bpfcc-introspection
 
 COPY --from=ebpf_exporter_builder /build/ebpf_exporter/ebpf_exporter /ebpf_exporter
 COPY --from=ebpf_exporter_builder /usr/share/misc/pci.ids /usr/share/misc/pci.ids
@@ -46,7 +48,9 @@ ENTRYPOINT ["/ebpf_exporter"]
 
 
 # ebpf_exporter release image with examples bundled
-FROM gcr.io/distroless/static-debian11 AS ebpf_exporter_with_examples
+FROM debian:bookworm AS ebpf_exporter_with_examples
+
+RUN apt-get -y update && apt-get -y install python3 bpftool bpfmon bpftrace bpfcc-tools libbpf-tools binutils-bpf bpfcc-introspection
 
 COPY --from=ebpf_exporter_builder /build/ebpf_exporter/ebpf_exporter /ebpf_exporter
 COPY --from=ebpf_exporter_builder /usr/share/misc/pci.ids /usr/share/misc/pci.ids
