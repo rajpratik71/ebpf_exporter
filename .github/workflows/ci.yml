@@ -6,6 +6,7 @@ on:
       - v*
     branches:
       - master
+      - downstream
   pull_request:
 
 jobs:
